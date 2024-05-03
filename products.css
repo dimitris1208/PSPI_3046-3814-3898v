@@ -48,4 +48,30 @@ nav a.active{
  
 }
 
+.table th {
+    border: 1px solid #000000; /* Add border to each table header */
+    padding: 8px; /* Add padding for better spacing */
+    background-color: #000000; /* Add background color */
+    text-align: center;
+  }
+
+  .add-product-form {
+    max-width: 400px;
+    
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-label {
+    width: 120px;
+    margin-right: 10px;
+  }
+  
+  
+  
+  
 /* END CODE HERE */
