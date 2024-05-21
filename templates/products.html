@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WIS Project - Products</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='products.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  </head>
+  <body>
+    <!-- BEGIN CODE HERE -->
+    <div class="header">
+      <img src="{{ url_for('static', filename='logo.png') }}" style="width: 250px; height: 58px;">
+      <nav>
+        <a href="homepage.html" >Home</a>
+        <a href="products.html" class="active" >Products</a>
+      </nav>
+    </div>
+
+
+    <div class="frame">
+      <!-- Search product bar -->
+      <div class="search-bar">
+        <p style="display: inline-block; margin-right: 10px;">Search a product</p>
+          <input type="text" id="searchInput" style="width: 200px;">
+          <button id="searchButton" class="btn btn-primary">Search</button>
+       
+      </div>
+
+
+      
+      <div>
+        <br>
+        <h3>Results </h3>
+        
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Production Year</th>
+              <th>Price</th>
+              <th>Color</th>
+              <th>Size</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody">
+            {% for product in results %}
+            <tr>
+                <td>{{ product._id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.production_year }}</td>
+                <td>{{ product.prize }}</td>
+                <td>{{ product.color }}</td>
+                <td>{{ product.size }}</td>
+            </tr>
+            {% endfor %}
+            <!-- Search results here -->
+          </tbody>
+        </table>
+      
+      
+      </div>
+      <br>
+    </div>
+    <div class="frame">
+      
+      <div class="add-product-form">
+        <h2>Add a product</h2>
+        <br>
+        <form id="productForm">
+          <div class="form-group">
+            <div class="input-label">Name:</div>
+            <input type="text" id="productName" >
+          </div>
+          <div class="form-group">
+            <div class="input-label">Production year:</div>
+            <input type="text" id="productYear" >
+          </div>
+            <div class="form-group">
+            <div class="input-label">Price:</div>
+            <input type="text" id="productPrice" >
+            </div>
+          <div class="form-group">
+           <div class="input-label">Color:</div>
+            <input type="text" id="productColor" >
+         </div>
+          <div class="form-group">
+            <div class="input-label">Size:</div>
+            <input type="text" id="productSize" >
+          </div>
+          <div class="row">
+            <div class="col text-end">
+              <button type="submit" class="btn btn-primary" >Save</button>
+            </div>
+          </div>  
+        </form>
+      </div>
+      
+    </div>
+
+    <div class="footer">
+      <p> 
+       ONOMATA AEM
+      </p>
+    </div>
+
+    <!-- END CODE HERE -->
+    <script src="{{ url_for('static', filename='products.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>

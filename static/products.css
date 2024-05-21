@@ -1,0 +1,75 @@
+/* BEGIN CODE HERE */
+.header, .footer, .frame {
+    width: 1200px ;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.header {
+    height: 150px;
+    border-bottom: 2px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.footer {
+    display: flex;
+    height: 100px;
+    border-top: 2px solid #e0e0e0;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.frame {
+    width: 1200px;
+    margin-top: 20px;
+
+}
+
+nav a {
+    display: inline-block;
+    padding: 10px 10px;
+    color: #2321af;
+    text-decoration: none;
+    
+}
+
+nav a.active{
+    color: #ffffff;
+    border: 2px  #2321af;
+    background-color: #2321af;
+    border-radius: 5px;
+    
+   
+ 
+}
+
+.table th {
+    border: 1px solid #000000; /* Add border to each table header */
+    padding: 8px; /* Add padding for better spacing */
+    background-color: #000000; /* Add background color */
+    text-align: center;
+  }
+
+  .add-product-form {
+    max-width: 1200px;
+    
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-label {
+    width: 120px;
+    margin-right: 10px;
+  }
+
+  
+/* END CODE HERE */
