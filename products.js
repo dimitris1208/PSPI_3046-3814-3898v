@@ -13,14 +13,41 @@ searchButtonOnClick = () => {
     
 
     function displaySearchResults(results){
-        const resultsContainer = document.getElementById("searchResults");
-        resultsContainer.innerHTML = "";
-        results.forEach(result => {
-            const resultItem = document.createElement("div");
-            resultItem.innerText = `Name: ${result.name}, Year: ${result.production_year}, Color: ${result.color}, Price: ${result.price}, Size: ${result.size}`;
-            resultsContainer.appendChild(resultItem);
-        }
-        );
+        const resultsContainer = document.getElementById("resultsBody");
+    resultsContainer.innerHTML = ""; // Clear previous results
+
+    results.forEach(result => {
+        // Create a new table row for each result
+        const resultRow = document.createElement("tr");
+
+        // Create and append table data cells for each property of the result
+        const idCell = document.createElement("td");
+        idCell.innerText = result._id;
+        resultRow.appendChild(idCell);
+
+        const nameCell = document.createElement("td");
+        nameCell.innerText = result.name;
+        resultRow.appendChild(nameCell);
+
+        const productionYearCell = document.createElement("td");
+        productionYearCell.innerText = result.production_year;
+        resultRow.appendChild(productionYearCell);
+
+        const colorCell = document.createElement("td");
+        colorCell.innerText = result.color;
+        resultRow.appendChild(colorCell);
+
+        const priceCell = document.createElement("td");
+        priceCell.innerText = result.price;
+        resultRow.appendChild(priceCell);
+
+        const sizeCell = document.createElement("td");
+        sizeCell.innerText = result.size;
+        resultRow.appendChild(sizeCell);
+
+        // Append the row to the results container
+        resultsContainer.appendChild(resultRow);
+        });
     }
 
     fetch(`${api}/search?name=${query}`)

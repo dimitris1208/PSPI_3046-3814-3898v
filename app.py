@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 import numpy as np
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/pspi"
+app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/project"
 CORS(app)
 mongo = PyMongo(app)
 mongo.db.products.create_index([("name", TEXT)])
@@ -18,6 +18,8 @@ mongo.db.products.create_index([("name", TEXT)])
 def search():
     name = request.args.get('name', 'No Name')
     query = {"name": {"$regex": name, "$options": "i"}}
+    results = list(mongo.db.products.find(query))
+    print(results)
     return jsonify(list(mongo.db.products.find(query)))
 
 
@@ -72,3 +74,6 @@ def crawler():
         for row in rows[1:]:
             subjects.append(row.find_element(By.CLASS_NAME, "title").text)
     return subjects
+
+if __name__ == '__main__':
+    app.run(debug=True)
