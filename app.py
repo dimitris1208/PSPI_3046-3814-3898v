@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 import numpy as np
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/project"
+app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/pspi"
 CORS(app)
 mongo = PyMongo(app)
 mongo.db.products.create_index([("name", TEXT)])
