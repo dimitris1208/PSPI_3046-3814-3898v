@@ -18,8 +18,6 @@ mongo.db.products.create_index([("name", TEXT)])
 def search():
     name = request.args.get('name', 'No Name')
     query = {"name": {"$regex": name, "$options": "i"}}
-    results = list(mongo.db.products.find(query))
-    print(results)
     return jsonify(list(mongo.db.products.find(query)))
 
 
