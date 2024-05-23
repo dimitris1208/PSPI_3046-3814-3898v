@@ -18,7 +18,10 @@ mongo.db.products.create_index([("name", TEXT)])
 def search():
     name = request.args.get('name', 'No Name')
     query = {"name": {"$regex": name, "$options": "i"}}
-    return jsonify(list(mongo.db.products.find(query)))
+    results = list(mongo.db.products.find(query))
+    for result in results:
+        result['_id'] = str(result['_id'])
+    return jsonify(results)
 
 
 @app.route("/add-product", methods=["POST"])
@@ -30,7 +33,10 @@ def add_product():
         collection.update_one({"name" : name}, { '$set' : {"production_year" : data["production_year"],"color" : data["color"],"price" : data["price"],"size" : data["size"]}})      
     else:
         collection.insert_one(data)
-    return jsonify(list(collection.find({"name" : name})))
+    result = list(collection.find({"name" : name}))
+    for item in result:
+        item['_id'] = str(item['_id'])
+    return jsonify(result)
 
 
 @app.route("/content-based-filtering", methods=["POST"])
