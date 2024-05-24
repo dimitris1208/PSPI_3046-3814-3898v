@@ -81,8 +81,17 @@ productFormOnSubmit = (event) => {
         .then(response=> response.json())
         .then(data => {
             console.log("Success");
+            document.getElementById("productName").value = "";
+            document.getElementById("productYear").value = "";
+            document.getElementById("productColor").value = "";
+            document.getElementById("productPrice").value = "";
+            document.getElementById("productSize").value = "";
+            alert("OK");
         })
-        .catch(error=> console.error('Error:',error))
+        .catch(error=> {
+            console.error('Error:',error);
+            alert("Error");
+        })
 
     // END CODE HERE
 }

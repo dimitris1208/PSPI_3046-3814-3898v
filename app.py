@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 import numpy as np
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/project"
+app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/pspi"
 CORS(app)
 mongo = PyMongo(app)
 mongo.db.products.create_index([("name", TEXT)])
@@ -18,8 +18,6 @@ mongo.db.products.create_index([("name", TEXT)])
 def search():
     name = request.args.get('name', 'No Name')
     query = {"name": {"$regex": name, "$options": "i"}}
-    results = list(mongo.db.products.find(query))
-    print(results)
     return jsonify(list(mongo.db.products.find(query)))
 
 
@@ -31,8 +29,9 @@ def add_product():
     if len(list(collection.find({"name" : name}))) > 0 :
         collection.update_one({"name" : name}, { '$set' : {"production_year" : data["production_year"],"color" : data["color"],"price" : data["price"],"size" : data["size"]}})      
     else:
+        data['_id'] = str(int(len(list(collection.find()))) + 1)
         collection.insert_one(data)
-    return jsonify(list(collection.find({"name" : name})))
+    return jsonify(list(collection.find()))
 
 
 @app.route("/content-based-filtering", methods=["POST"])
@@ -74,6 +73,3 @@ def crawler():
         for row in rows[1:]:
             subjects.append(row.find_element(By.CLASS_NAME, "title").text)
     return subjects
-
-if __name__ == '__main__':
-    app.run(debug=True)
